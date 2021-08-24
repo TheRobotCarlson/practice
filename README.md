@@ -1,9 +1,19 @@
 # Price project
 
-## Questions
-- schema1 & 2 - "price"? price at eod / available window? - carries over
-- schema1 - direction, difference between SOD and EOD or just EOD and EOD?
-- schema1 - high + low since start - just EOD or anytime during the day? 
+## Design Decisions
+- Doesn't need to be that optimized since it's such a small amount of data. Readability + maintainability > speed
+- Data schema could need to be changed in the future. We should make it easy to change both the output format and to add
+new computed fields
+- Serverless framework is quick to setup, run, and deploy
+- Automated tests would be a good next step
+
+
+## To run
+```
+npm install -g serverless
+npm i
+serverless offline
+```
 
 ## Specification
 ```
@@ -43,20 +53,3 @@ schema2 = {
 - "dailyAverage" average of all entries for that day
 - "dailyVariance" variance of all entries for that day
 - volatilityalert (true/false) if any price that day is outside 2 standard deviations
-
-
-
-## Progress
-- [ ] stream read json from endpoint vs tempfile download + iterate
-- [ ] rest api endpoint
-- [ ] schema1 calculation - bulk
-- [ ] schema2 calculation - bulk
-- [ ] unit tests
-- [ ] integration - serverless
-- [ ] github actions + deploy
-- [ ] schema1 calculation - streaming
-- [ ] schema2 calculation - streaming
-- [ ] unit tests
-- [ ] date range queries
-- [ ] parse + cache date ranges
-- [ ] unit tests + offline testing
